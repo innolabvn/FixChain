@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
-"""Main CLI application for FixChain RAG system."""
+"""Main CLI application for FixChain Test Suite and RAG system."""
 
+import asyncio
 import logging
 import sys
 import argparse
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
+from pathlib import Path
 
 from config import get_settings
 from rag import create_rag_store
 from rag.interfaces import RAGStore
 from models.schemas import ReasoningEntry
+from core.test_executor import TestExecutor
+from testsuite.static_tests.syntax_check import SyntaxCheckTest
+from testsuite.static_tests.type_check import TypeCheckTest
+from testsuite.static_tests.security_check import SecurityCheckTest
 
 # Configure logging
 logging.basicConfig(
@@ -248,14 +254,137 @@ def interactive_mode(rag_store: RAGStore) -> None:
             print(f"Error: {e}")
 
 
+async def run_test_suite(file_path: str, tests: List[str], max_iterations: int = 5) -> None:
+    """Run the FixChain test suite on a source file.
+    
+    Args:
+        file_path: Path to the source file to test
+        tests: List of test types to run (syntax, type, security, all)
+        max_iterations: Maximum number of fix iterations
+    """
+    logger.info(f"Running FixChain Test Suite on: {file_path}")
+    logger.info(f"Test types: {', '.join(tests)}")
+    logger.info(f"Max iterations: {max_iterations}")
+    
+    # Check if file exists
+    if not Path(file_path).exists():
+        logger.error(f"File not found: {file_path}")
+        return
+    
+    # For test suite mode, we'll run in standalone mode without database/RAG
+    # This avoids complex dependency initialization for simple test execution
+    logger.info("Running test suite in standalone mode")
+    
+    # Create a simple test executor without database dependencies
+    # We'll directly instantiate and run tests without the full TestExecutor
+    from testsuite.static_tests.syntax_check import SyntaxCheckTest
+    from testsuite.static_tests.type_check import TypeCheckTest  
+    from testsuite.static_tests.security_check import SecurityCheckTest
+    
+    # Define available test cases
+    available_tests = {
+        'syntax': SyntaxCheckTest,
+        'type': TypeCheckTest,
+        'security': SecurityCheckTest
+    }
+    
+    # Determine which tests to run
+    if 'all' in tests:
+        test_names = list(available_tests.keys())
+    else:
+        test_names = [test for test in tests if test in available_tests]
+    
+    if not test_names:
+        logger.error("No valid test cases specified")
+        return
+    
+    # Run each test case
+    results = []
+    for test_name in test_names:
+        logger.info(f"\n{'='*50}")
+        logger.info(f"Running {test_name.upper()} test...")
+        logger.info(f"{'='*50}")
+        
+        try:
+            # Create test instance
+            test_class = available_tests[test_name]
+            test_instance = test_class(max_iterations=max_iterations)
+            
+            # Run test directly
+            result = await test_instance.run(
+                source_file=file_path,
+                attempt_id=f"{test_name}_1"
+            )
+            
+            results.append((test_name, result))
+            
+            # Log results
+            logger.info(f"\n{test_name.upper()} Test Results:")
+            logger.info(f"  Status: {result.status}")
+            logger.info(f"  Summary: {result.summary}")
+            
+            if hasattr(result, 'output') and result.output:
+                logger.info(f"  Output: {result.output[:200]}...")  # Show first 200 chars
+            
+            if hasattr(result, 'metadata') and result.metadata:
+                logger.info(f"  Metadata: {result.metadata}")
+            
+        except Exception as e:
+            logger.error(f"Failed to run {test_name} test: {e}")
+            if logger.isEnabledFor(logging.DEBUG):
+                import traceback
+                traceback.print_exc()
+            results.append((test_name, None))
+    
+    # Summary
+    logger.info(f"\n{'='*60}")
+    logger.info("TEST SUITE SUMMARY")
+    logger.info(f"{'='*60}")
+    
+    passed = 0
+    total = 0
+    
+    for test_name, result in results:
+        if result is not None:
+            total += 1
+            status_symbol = "[PASS]" if result.status == "pass" else "[FAIL]"
+            status_text = "PASSED" if result.status == "pass" else "FAILED"
+            logger.info(f"{status_symbol} {test_name.upper()}: {status_text}")
+            if result.status == "pass":
+                passed += 1
+        else:
+            total += 1
+            logger.info(f"[ERROR] {test_name.upper()}: ERROR")
+    
+    logger.info(f"\nOverall: {passed}/{total} tests passed")
+    logger.info(f"Test suite completed for: {file_path}")
+
+
 def main():
     """Main application entry point."""
-    parser = argparse.ArgumentParser(description="FixChain RAG System")
+    parser = argparse.ArgumentParser(description="FixChain Test Suite and RAG System")
     parser.add_argument(
         "--mode", 
-        choices=["demo", "interactive", "test"], 
+        choices=["demo", "interactive", "test", "testsuite"], 
         default="demo",
-        help="Run mode: demo (default), interactive, or test"
+        help="Run mode: demo (default), interactive, test, or testsuite"
+    )
+    parser.add_argument(
+        "--file",
+        type=str,
+        help="Source file to test (required for testsuite mode)"
+    )
+    parser.add_argument(
+        "--tests",
+        type=str,
+        default="all",
+        help="Comma-separated list of tests to run: syntax,type,security,all (default: all)"
+    )
+    parser.add_argument(
+        "--max-iterations",
+        type=int,
+        default=5,
+        help="Maximum number of fix iterations (default: 5)"
     )
     parser.add_argument(
         "--debug", 
@@ -273,6 +402,38 @@ def main():
     # Setup logging
     setup_logging(args.debug)
     
+    # Handle testsuite mode separately (doesn't need RAG store)
+    if args.mode == "testsuite":
+        if not args.file:
+            logger.error("--file argument is required for testsuite mode")
+            parser.print_help()
+            sys.exit(1)
+        
+        # Parse test types
+        test_types = [t.strip().lower() for t in args.tests.split(',')]
+        
+        # Validate test types
+        valid_tests = {'syntax', 'type', 'security', 'all'}
+        invalid_tests = [t for t in test_types if t not in valid_tests]
+        if invalid_tests:
+            logger.error(f"Invalid test types: {', '.join(invalid_tests)}")
+            logger.error(f"Valid options: {', '.join(valid_tests)}")
+            sys.exit(1)
+        
+        try:
+            # Run test suite
+            asyncio.run(run_test_suite(args.file, test_types, args.max_iterations))
+        except KeyboardInterrupt:
+            logger.info("Test suite interrupted by user")
+        except Exception as e:
+            logger.error(f"Test suite failed: {e}")
+            if args.debug:
+                import traceback
+                traceback.print_exc()
+            sys.exit(1)
+        return
+    
+    # Handle RAG-related modes
     try:
         # Load settings
         settings = get_settings()
@@ -314,7 +475,7 @@ def main():
             traceback.print_exc()
         sys.exit(1)
     
-    logger.info("FixChain RAG system shutdown complete")
+    logger.info("FixChain application shutdown complete")
 
 
 if __name__ == "__main__":

@@ -179,7 +179,7 @@ class SecurityCheckTest(ITestCase):
                 suggestion="Check file permissions and tool installations"
             ))
             
-            output_lines.append(f"✗ Unexpected error: {str(e)}")
+            output_lines.append(f"[ERROR] Unexpected error: {str(e)}")
             status = "fail"
             summary = f"Unexpected error: {str(e)}"
         

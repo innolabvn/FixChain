@@ -82,7 +82,7 @@ class SyntaxCheckTest(ITestCase):
             # Try to parse the AST
             try:
                 ast.parse(source_code, filename=source_file)
-                output_lines.append("✓ Syntax check passed")
+                output_lines.append("[OK] Syntax check passed")
                 
                 # Check for TODO comments that simulate issues
                 todo_issues = self._check_for_todo_issues(source_code, source_file)
@@ -110,7 +110,7 @@ class SyntaxCheckTest(ITestCase):
                     suggestion="Fix the syntax error according to Python language rules"
                 ))
                 
-                output_lines.append(f"✗ Syntax error at line {e.lineno}: {e.msg}")
+                output_lines.append(f"[ERROR] Syntax error at line {e.lineno}: {e.msg}")
                 status = "fail"
                 summary = f"Syntax error found at line {e.lineno}: {e.msg}"
                 
@@ -128,7 +128,7 @@ class SyntaxCheckTest(ITestCase):
                 suggestion="Check file encoding and permissions"
             ))
             
-            output_lines.append(f"✗ Unexpected error: {str(e)}")
+            output_lines.append(f"[ERROR] Unexpected error: {str(e)}")
             status = "fail"
             summary = f"Unexpected error: {str(e)}"
         

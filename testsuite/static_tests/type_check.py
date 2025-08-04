@@ -115,7 +115,7 @@ class TypeCheckTest(ITestCase):
                     suggestion="Check mypy installation and configuration"
                 ))
                 
-                output_lines.append(f"✗ mypy execution failed: {mypy_result['error']}")
+                output_lines.append(f"[ERROR] mypy execution failed: {mypy_result['error']}")
                 status = "fail"
                 summary = f"Type checker execution failed: {mypy_result['error']}"
                 
@@ -133,7 +133,7 @@ class TypeCheckTest(ITestCase):
                 suggestion="Check file permissions and mypy installation"
             ))
             
-            output_lines.append(f"✗ Unexpected error: {str(e)}")
+            output_lines.append(f"[ERROR] Unexpected error: {str(e)}")
             status = "fail"
             summary = f"Unexpected error: {str(e)}"
         
@@ -220,9 +220,9 @@ class TypeCheckTest(ITestCase):
                 output_lines.extend(result.stderr.split('\n'))
             
             if result.returncode == 0:
-                output_lines.append("✓ Type check passed")
+                output_lines.append("[OK] Type check passed")
             else:
-                output_lines.append(f"✗ Type check failed with {len(issues)} issues")
+                output_lines.append(f"[ERROR] Type check failed with {len(issues)} issues")
             
             return {
                 'success': True,

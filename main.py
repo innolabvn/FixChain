@@ -184,6 +184,40 @@ def demonstrate_rag_workflow(rag_store: RAGStore) -> None:
     logger.info("\nRAG demonstration completed!")
 
 
+async def store_test_reasoning(rag_store: RAGStore, test_name: str, attempt_id: str, result, source_file: str) -> None:
+    """Store test reasoning in RAG store.
+    
+    Args:
+        rag_store: RAG store instance
+        test_name: Name of the test
+        attempt_id: Unique attempt identifier
+        result: Test result object
+        source_file: Path to source file
+    """
+    try:
+        content = f"Test {test_name} on {source_file}: {result.summary}"
+        if hasattr(result, 'output') and result.output:
+            content += f" Output: {result.output}"
+        
+        metadata = {
+            "test_name": test_name,
+            "attempt_id": attempt_id,
+            "source_file": source_file,
+            "status": result.status,
+            "timestamp": datetime.now().isoformat(),
+            "test_type": "static_analysis"
+        }
+        
+        if hasattr(result, 'metadata') and result.metadata:
+            metadata.update(result.metadata)
+        
+        doc_id = rag_store.add_reasoning_entry(content, metadata)
+        logger.info(f"Stored test reasoning: {doc_id}")
+        
+    except Exception as e:
+        logger.warning(f"Failed to store test reasoning: {e}")
+
+
 def interactive_mode(rag_store: RAGStore) -> None:
     """Run interactive mode for testing RAG functionality.
     
@@ -254,26 +288,35 @@ def interactive_mode(rag_store: RAGStore) -> None:
             print(f"Error: {e}")
 
 
-async def run_test_suite(file_path: str, tests: List[str], max_iterations: int = 5) -> None:
+async def run_test_suite(file_path: str, tests: List[str], max_iterations: int = 5, enable_rag: bool = False) -> None:
     """Run the FixChain test suite on a source file.
     
     Args:
         file_path: Path to the source file to test
         tests: List of test types to run (syntax, type, security, all)
         max_iterations: Maximum number of fix iterations
+        enable_rag: Whether to enable RAG storage for test reasoning
     """
     logger.info(f"Running FixChain Test Suite on: {file_path}")
     logger.info(f"Test types: {', '.join(tests)}")
     logger.info(f"Max iterations: {max_iterations}")
+    logger.info(f"RAG storage: {'Enabled' if enable_rag else 'Disabled'}")
     
     # Check if file exists
     if not Path(file_path).exists():
         logger.error(f"File not found: {file_path}")
         return
     
-    # For test suite mode, we'll run in standalone mode without database/RAG
-    # This avoids complex dependency initialization for simple test execution
-    logger.info("Running test suite in standalone mode")
+    # Initialize RAG store if enabled
+    rag_store = None
+    if enable_rag:
+        try:
+            settings = get_settings()
+            rag_store = create_rag_store(settings)
+            logger.info("RAG store initialized successfully")
+        except Exception as e:
+            logger.warning(f"Failed to initialize RAG store: {e}")
+            logger.info("Continuing without RAG storage...")
     
     # Create a simple test executor without database dependencies
     # We'll directly instantiate and run tests without the full TestExecutor
@@ -311,12 +354,23 @@ async def run_test_suite(file_path: str, tests: List[str], max_iterations: int =
             test_instance = test_class(max_iterations=max_iterations)
             
             # Run test directly
+            attempt_id = f"{test_name}_1"
             result = await test_instance.run(
                 source_file=file_path,
-                attempt_id=f"{test_name}_1"
+                attempt_id=attempt_id
             )
             
             results.append((test_name, result))
+            
+            # Store reasoning in RAG if enabled
+            if rag_store and result:
+                await store_test_reasoning(
+                    rag_store=rag_store,
+                    test_name=test_name,
+                    attempt_id=attempt_id,
+                    result=result,
+                    source_file=file_path
+                )
             
             # Log results
             logger.info(f"\n{test_name.upper()} Test Results:")
@@ -335,6 +389,14 @@ async def run_test_suite(file_path: str, tests: List[str], max_iterations: int =
                 import traceback
                 traceback.print_exc()
             results.append((test_name, None))
+    
+    # Cleanup RAG store
+    if rag_store:
+        try:
+            rag_store.close()
+            logger.info("RAG store closed successfully")
+        except Exception as e:
+            logger.warning(f"Error closing RAG store: {e}")
     
     # Summary
     logger.info(f"\n{'='*60}")
@@ -392,6 +454,11 @@ def main():
         help="Enable debug logging"
     )
     parser.add_argument(
+        "--enable-rag",
+        action="store_true",
+        help="Enable RAG storage for test reasoning"
+    )
+    parser.add_argument(
         "--config-check", 
         action="store_true", 
         help="Check configuration and exit"
@@ -422,7 +489,7 @@ def main():
         
         try:
             # Run test suite
-            asyncio.run(run_test_suite(args.file, test_types, args.max_iterations))
+            asyncio.run(run_test_suite(args.file, test_types, args.max_iterations, enable_rag=args.enable_rag))
         except KeyboardInterrupt:
             logger.info("Test suite interrupted by user")
         except Exception as e:

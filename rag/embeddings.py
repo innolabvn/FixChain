@@ -77,7 +77,7 @@ class OpenAIEmbeddingProvider(EmbeddingProvider):
 
 
 class HuggingFaceEmbeddingProvider(EmbeddingProvider):
-    """HuggingFace embedding provider implementation (placeholder for future extension)."""
+    """HuggingFace embedding provider implementation using sentence-transformers."""
     
     def __init__(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2"):
         """Initialize HuggingFace embedding provider.
@@ -85,24 +85,46 @@ class HuggingFaceEmbeddingProvider(EmbeddingProvider):
         Args:
             model_name: HuggingFace model name
         """
-        self.model_name = model_name
-        # Note: This would require sentence-transformers library
-        # from sentence_transformers import SentenceTransformer
-        # self.model = SentenceTransformer(model_name)
-        raise NotImplementedError("HuggingFace provider not yet implemented")
+        try:
+            from sentence_transformers import SentenceTransformer
+            self.model_name = model_name
+            self.model = SentenceTransformer(model_name)
+            logger.info(f"Loaded HuggingFace model: {model_name}")
+        except ImportError:
+            raise ImportError("sentence-transformers library is required. Install with: pip install sentence-transformers")
+        except Exception as e:
+            logger.error(f"Failed to load HuggingFace model {model_name}: {e}")
+            raise
     
     def embed_text(self, text: str) -> List[float]:
         """Generate embedding vector for given text."""
-        # return self.model.encode([text])[0].tolist()
-        raise NotImplementedError("HuggingFace provider not yet implemented")
+        try:
+            embedding = self.model.encode([text])[0]
+            return embedding.tolist()
+        except Exception as e:
+            logger.error(f"Failed to generate embedding for text: {e}")
+            raise
     
     def embed_texts(self, texts: List[str]) -> List[List[float]]:
         """Generate embedding vectors for multiple texts."""
-        # return self.model.encode(texts).tolist()
-        raise NotImplementedError("HuggingFace provider not yet implemented")
+        try:
+            embeddings = self.model.encode(texts)
+            return embeddings.tolist()
+        except Exception as e:
+            logger.error(f"Failed to generate embeddings for texts: {e}")
+            raise
     
     @property
     def dimensions(self) -> int:
         """Get the dimensionality of the embedding vectors."""
-        # This would depend on the specific model
-        return 384  # Default for all-MiniLM-L6-v2
+        # Get actual dimensions from the model
+        try:
+            return self.model.get_sentence_embedding_dimension()
+        except:
+            # Fallback to common dimensions
+            model_dimensions = {
+                "sentence-transformers/all-MiniLM-L6-v2": 384,
+                "sentence-transformers/all-mpnet-base-v2": 768,
+                "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2": 384,
+            }
+            return model_dimensions.get(self.model_name, 384)

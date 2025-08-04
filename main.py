@@ -10,7 +10,7 @@ from typing import Optional, List
 from pathlib import Path
 
 from config import get_settings
-from rag import create_rag_store
+from rag import create_rag_store, create_mongodb_only_rag_store
 from rag.interfaces import RAGStore
 from models.schemas import ReasoningEntry
 from core.test_executor import TestExecutor
@@ -312,8 +312,13 @@ async def run_test_suite(file_path: str, tests: List[str], max_iterations: int =
     if enable_rag:
         try:
             settings = get_settings()
-            rag_store = create_rag_store(settings)
-            logger.info("RAG store initialized successfully")
+            # Use MongoDB-only RAG store (no OpenAI dependency)
+            rag_store = create_mongodb_only_rag_store(
+                mongodb_uri=settings.mongodb_uri,
+                database_name=settings.database_name,
+                collection_name=settings.collection_name
+            )
+            logger.info("MongoDB-only RAG store initialized successfully")
         except Exception as e:
             logger.warning(f"Failed to initialize RAG store: {e}")
             logger.info("Continuing without RAG storage...")

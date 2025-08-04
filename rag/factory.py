@@ -5,7 +5,7 @@ from typing import Optional
 
 from config.settings import Settings
 from .interfaces import EmbeddingProvider, VectorStore, RAGStore
-from .embeddings import OpenAIEmbeddingProvider
+from .embeddings import OpenAIEmbeddingProvider, HuggingFaceEmbeddingProvider
 from .stores import MongoVectorStore, FixChainRAGStore
 
 logger = logging.getLogger(__name__)
@@ -86,6 +86,42 @@ def create_rag_store(settings: Optional[Settings] = None) -> RAGStore:
     return rag_store
 
 
+def create_mongodb_only_rag_store(mongodb_uri: str, database_name: str = "fixchain", 
+                                  collection_name: str = "rag_insights",
+                                  embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2") -> RAGStore:
+    """Create a RAG store using only MongoDB and local HuggingFace embeddings.
+    
+    Args:
+        mongodb_uri: MongoDB connection URI
+        database_name: Database name
+        collection_name: Collection name for RAG insights
+        embedding_model: HuggingFace model name for local embeddings
+        
+    Returns:
+        Configured RAG store with local embeddings
+        
+    Raises:
+        ValueError: If required configuration is missing
+    """
+    if not mongodb_uri:
+        raise ValueError("MongoDB URI is required for vector store")
+    
+    logger.info("Creating MongoDB-only RAG store with local embeddings...")
+    
+    # Build RAG store using builder pattern with local embeddings
+    rag_store = (RAGStoreBuilder()
+                .with_huggingface_embeddings(model_name=embedding_model)
+                .with_mongo_store(
+                    mongodb_uri=mongodb_uri,
+                    database_name=database_name,
+                    collection_name=collection_name
+                )
+                .build())
+    
+    logger.info("MongoDB-only RAG store created successfully")
+    return rag_store
+
+
 class RAGStoreBuilder:
     """Builder pattern for creating customized RAG stores."""
     
@@ -128,6 +164,18 @@ class RAGStoreBuilder:
             Builder instance for chaining
         """
         self._embedding_provider = OpenAIEmbeddingProvider(api_key=api_key, model=model)
+        return self
+    
+    def with_huggingface_embeddings(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2") -> 'RAGStoreBuilder':
+        """Configure HuggingFace local embeddings.
+        
+        Args:
+            model_name: HuggingFace model name
+            
+        Returns:
+            Builder instance for chaining
+        """
+        self._embedding_provider = HuggingFaceEmbeddingProvider(model_name=model_name)
         return self
     
     def with_mongo_store(self, mongodb_uri: str, database_name: str = "fixchain", 

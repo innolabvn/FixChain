@@ -1,0 +1,31 @@
+rules:
+  - id: owasp-top10-injection
+    patterns:
+      - pattern: $X = eval($Y)
+    message: "[OWASP A1] Use of eval() can lead to code injection vulnerabilities."
+    severity: ERROR
+    languages: [python]
+    metadata:
+      owasp: "A1: Injection"
+      category: security
+  - id: owasp-top10-sql-injection
+    patterns:
+      - pattern: cursor.execute($QUERY)
+      - pattern-inside: |
+          $QUERY = "SELECT ..." + $USER_INPUT
+    message: "[OWASP A1] Possible SQL Injection via string concatenation. Use parameterized queries."
+    severity: ERROR
+    languages: [python]
+    metadata:
+      owasp: "A1: Injection"
+      category: security
+  - id: owasp-top10-ssrf
+    patterns:
+      - pattern: requests.get($URL)
+      - pattern-inside: $URL = input(...)
+    message: "[OWASP A10] Possible SSRF vulnerability. Do not use user input directly in requests."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      owasp: "A10: SSRF"
+      category: security

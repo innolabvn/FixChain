@@ -1,15 +1,20 @@
 # Core dependencies
 pymongo>=4.5.0
+motor>=3.3.0
 openai>=1.0.0
 pydantic>=2.0.0
 pydantic-settings>=2.0.0
 numpy>=1.24.0
 tiktoken>=0.5.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
 
 # Testing dependencies
 pytest>=7.0.0
 pytest-cov>=4.0.0
 pytest-mock>=3.10.0
+# latest version 
+semgrep>=1.0.0
 
 # Development dependencies
 black>=23.0.0
@@ -17,5 +22,5 @@ flake8>=6.0.0
 mypy>=1.0.0
 
 # Optional dependencies for future extensions
-# sentence-transformers>=2.2.0  # For HuggingFace embeddings
+sentence-transformers>=2.2.0  # For HuggingFace embeddings
 # faiss-cpu>=1.7.0  # For alternative vector search

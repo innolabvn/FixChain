@@ -1,0 +1,50 @@
+rules:
+  - id: code-quality-dead-code
+    patterns:
+      - pattern: |
+          def $FUNC(...):
+              pass
+    message: "Dead code: function defined but does nothing."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: code-quality
+  - id: code-quality-duplicate-logic
+    patterns:
+      - pattern: |
+          if $COND:
+              $X
+          else:
+              $X
+    message: "Duplicate logic in if/else branches. Consider refactoring."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: code-quality
+  - id: code-quality-long-function
+    patterns:
+      - pattern: |
+          def $FUNC(...):
+              ...
+              ...
+              ...
+              ...
+              ...
+              ...
+              ...
+              ...
+              ...
+              ...
+    message: "Function is too long. Consider splitting into smaller functions."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: code-quality
+  - id: code-quality-global-variable
+    patterns:
+      - pattern: global $VAR
+    message: "Use of global variable detected. Avoid using globals for better maintainability."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: code-quality

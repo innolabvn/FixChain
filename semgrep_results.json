@@ -1,0 +1,1364 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "file": "src_test\\example.py",
+      "line": 1,
+      "column": 1,
+      "end_line": 1,
+      "end_column": 10,
+      "message": "Check imported package for known vulnerabilities.",
+      "severity": "medium",
+      "rule_id": "dependency-insecure-package",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 2,
+      "column": 1,
+      "end_line": 2,
+      "end_column": 15,
+      "message": "Check imported package for known vulnerabilities.",
+      "severity": "medium",
+      "rule_id": "dependency-insecure-package",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 3,
+      "column": 1,
+      "end_line": 3,
+      "end_column": 16,
+      "message": "Check imported package for known vulnerabilities.",
+      "severity": "medium",
+      "rule_id": "dependency-insecure-package",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 14,
+      "column": 1,
+      "end_line": 22,
+      "end_column": 29,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 15,
+      "column": 5,
+      "end_line": 15,
+      "end_column": 19,
+      "message": "Use of global variable detected. Avoid using globals for better maintainability.",
+      "severity": "medium",
+      "rule_id": "code-quality-global-variable",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 24,
+      "column": 1,
+      "end_line": 28,
+      "end_column": 18,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 27,
+      "column": 5,
+      "end_line": 27,
+      "end_column": 24,
+      "message": "[OWASP A1] Use of eval() can lead to code injection vulnerabilities.",
+      "severity": "high",
+      "rule_id": "owasp-top10-injection",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "security",
+        "cwe": [],
+        "owasp": "A1: Injection"
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 30,
+      "column": 1,
+      "end_line": 33,
+      "end_column": 35,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 33,
+      "column": 5,
+      "end_line": 33,
+      "end_column": 35,
+      "message": "Use of os.system() is dangerous and can lead to command injection vulnerabilities.",
+      "severity": "high",
+      "rule_id": "security-audit-os-system",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "security",
+        "cwe": [
+          "CWE-78"
+        ],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 35,
+      "column": 1,
+      "end_line": 40,
+      "end_column": 58,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 42,
+      "column": 1,
+      "end_line": 46,
+      "end_column": 18,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 48,
+      "column": 1,
+      "end_line": 52,
+      "end_column": 32,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 54,
+      "column": 1,
+      "end_line": 56,
+      "end_column": 43,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example.py",
+      "line": 59,
+      "column": 4,
+      "end_line": 59,
+      "end_column": 15,
+      "message": "Dependency version not pinned. Use exact version in requirements.txt.",
+      "severity": "medium",
+      "rule_id": "dependency-unpinned-version",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 3,
+      "column": 1,
+      "end_line": 3,
+      "end_column": 18,
+      "message": "Check imported package for known vulnerabilities.",
+      "severity": "medium",
+      "rule_id": "dependency-insecure-package",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 4,
+      "column": 1,
+      "end_line": 4,
+      "end_column": 10,
+      "message": "Check imported package for known vulnerabilities.",
+      "severity": "medium",
+      "rule_id": "dependency-insecure-package",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 5,
+      "column": 1,
+      "end_line": 5,
+      "end_column": 15,
+      "message": "Check imported package for known vulnerabilities.",
+      "severity": "medium",
+      "rule_id": "dependency-insecure-package",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 6,
+      "column": 1,
+      "end_line": 6,
+      "end_column": 15,
+      "message": "Check imported package for known vulnerabilities.",
+      "severity": "medium",
+      "rule_id": "dependency-insecure-package",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 9,
+      "column": 1,
+      "end_line": 13,
+      "end_column": 26,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 13,
+      "column": 5,
+      "end_line": 13,
+      "end_column": 26,
+      "message": "Use of os.system() is dangerous and can lead to command injection vulnerabilities.",
+      "severity": "high",
+      "rule_id": "security-audit-os-system",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "security",
+        "cwe": [
+          "CWE-78"
+        ],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 16,
+      "column": 1,
+      "end_line": 26,
+      "end_column": 29,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 29,
+      "column": 1,
+      "end_line": 36,
+      "end_column": 21,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 34,
+      "column": 17,
+      "end_line": 34,
+      "end_column": 47,
+      "message": "MD5 is cryptographically broken and should not be used.",
+      "severity": "medium",
+      "rule_id": "security-audit-weak-hash",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "security",
+        "cwe": [
+          "CWE-327"
+        ],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 39,
+      "column": 1,
+      "end_line": 44,
+      "end_column": 19,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 42,
+      "column": 5,
+      "end_line": 42,
+      "end_column": 36,
+      "message": "Hardcoded API key detected.",
+      "severity": "high",
+      "rule_id": "secrets-api-key",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "secrets",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 47,
+      "column": 1,
+      "end_line": 54,
+      "end_column": 18,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 52,
+      "column": 5,
+      "end_line": 52,
+      "end_column": 35,
+      "message": "[OWASP A1] Use of eval() can lead to code injection vulnerabilities.",
+      "severity": "high",
+      "rule_id": "owasp-top10-injection",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "security",
+        "cwe": [],
+        "owasp": "A1: Injection"
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 57,
+      "column": 1,
+      "end_line": 64,
+      "end_column": 38,
+      "message": "Function is too long. Consider splitting into smaller functions.",
+      "severity": "medium",
+      "rule_id": "code-quality-long-function",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "code-quality",
+        "cwe": [],
+        "owasp": []
+      }
+    },
+    {
+      "file": "src_test\\example_vulnerable_code.py",
+      "line": 74,
+      "column": 4,
+      "end_line": 74,
+      "end_column": 15,
+      "message": "Dependency version not pinned. Use exact version in requirements.txt.",
+      "severity": "medium",
+      "rule_id": "dependency-unpinned-version",
+      "tool": "semgrep",
+      "confidence": "medium",
+      "metadata": {
+        "rule_url": "",
+        "category": "dependency",
+        "cwe": [],
+        "owasp": []
+      }
+    }
+  ],
+  "summary": {
+    "total_issues": 29,
+    "files_with_issues": 2,
+    "by_severity": {
+      "medium": 24,
+      "high": 5
+    },
+    "by_file": {
+      "src_test\\example.py": 14,
+      "src_test\\example_vulnerable_code.py": 15
+    },
+    "target_path": "src_test",
+    "scan_time": "2025-08-05T15:11:41.271677"
+  },
+  "raw_output": {
+    "version": "1.131.0",
+    "results": [
+      {
+        "check_id": "dependency-insecure-package",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 1,
+          "col": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "col": 10,
+          "offset": 9
+        },
+        "extra": {
+          "message": "Check imported package for known vulnerabilities.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "dependency-insecure-package",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 2,
+          "col": 1,
+          "offset": 11
+        },
+        "end": {
+          "line": 2,
+          "col": 15,
+          "offset": 25
+        },
+        "extra": {
+          "message": "Check imported package for known vulnerabilities.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "dependency-insecure-package",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 3,
+          "col": 1,
+          "offset": 27
+        },
+        "end": {
+          "line": 3,
+          "col": 16,
+          "offset": 42
+        },
+        "extra": {
+          "message": "Check imported package for known vulnerabilities.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 14,
+          "col": 1,
+          "offset": 262
+        },
+        "end": {
+          "line": 22,
+          "col": 29,
+          "offset": 615
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-global-variable",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 15,
+          "col": 5,
+          "offset": 285
+        },
+        "end": {
+          "line": 15,
+          "col": 19,
+          "offset": 299
+        },
+        "extra": {
+          "message": "Use of global variable detected. Avoid using globals for better maintainability.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 24,
+          "col": 1,
+          "offset": 619
+        },
+        "end": {
+          "line": 28,
+          "col": 18,
+          "offset": 766
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "owasp-top10-injection",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 27,
+          "col": 5,
+          "offset": 728
+        },
+        "end": {
+          "line": 27,
+          "col": 24,
+          "offset": 747
+        },
+        "extra": {
+          "message": "[OWASP A1] Use of eval() can lead to code injection vulnerabilities.",
+          "metadata": {
+            "owasp": "A1: Injection",
+            "category": "security"
+          },
+          "severity": "ERROR",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 30,
+          "col": 1,
+          "offset": 770
+        },
+        "end": {
+          "line": 33,
+          "col": 35,
+          "offset": 921
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "security-audit-os-system",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 33,
+          "col": 5,
+          "offset": 891
+        },
+        "end": {
+          "line": 33,
+          "col": 35,
+          "offset": 921
+        },
+        "extra": {
+          "message": "Use of os.system() is dangerous and can lead to command injection vulnerabilities.",
+          "metadata": {
+            "category": "security",
+            "cwe": [
+              "CWE-78"
+            ]
+          },
+          "severity": "ERROR",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 35,
+          "col": 1,
+          "offset": 925
+        },
+        "end": {
+          "line": 40,
+          "col": 58,
+          "offset": 1107
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 42,
+          "col": 1,
+          "offset": 1111
+        },
+        "end": {
+          "line": 46,
+          "col": 18,
+          "offset": 1251
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 48,
+          "col": 1,
+          "offset": 1255
+        },
+        "end": {
+          "line": 52,
+          "col": 32,
+          "offset": 1429
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 54,
+          "col": 1,
+          "offset": 1433
+        },
+        "end": {
+          "line": 56,
+          "col": 43,
+          "offset": 1521
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "dependency-unpinned-version",
+        "path": "src_test\\example.py",
+        "start": {
+          "line": 59,
+          "col": 4,
+          "offset": 1543
+        },
+        "end": {
+          "line": 59,
+          "col": 15,
+          "offset": 1554
+        },
+        "extra": {
+          "message": "Dependency version not pinned. Use exact version in requirements.txt.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "dependency-insecure-package",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 3,
+          "col": 1,
+          "offset": 81
+        },
+        "end": {
+          "line": 3,
+          "col": 18,
+          "offset": 98
+        },
+        "extra": {
+          "message": "Check imported package for known vulnerabilities.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "dependency-insecure-package",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 4,
+          "col": 1,
+          "offset": 99
+        },
+        "end": {
+          "line": 4,
+          "col": 10,
+          "offset": 108
+        },
+        "extra": {
+          "message": "Check imported package for known vulnerabilities.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "dependency-insecure-package",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 5,
+          "col": 1,
+          "offset": 109
+        },
+        "end": {
+          "line": 5,
+          "col": 15,
+          "offset": 123
+        },
+        "extra": {
+          "message": "Check imported package for known vulnerabilities.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "dependency-insecure-package",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 6,
+          "col": 1,
+          "offset": 124
+        },
+        "end": {
+          "line": 6,
+          "col": 15,
+          "offset": 138
+        },
+        "extra": {
+          "message": "Check imported package for known vulnerabilities.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 9,
+          "col": 1,
+          "offset": 141
+        },
+        "end": {
+          "line": 13,
+          "col": 26,
+          "offset": 355
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "security-audit-os-system",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 13,
+          "col": 5,
+          "offset": 334
+        },
+        "end": {
+          "line": 13,
+          "col": 26,
+          "offset": 355
+        },
+        "extra": {
+          "message": "Use of os.system() is dangerous and can lead to command injection vulnerabilities.",
+          "metadata": {
+            "category": "security",
+            "cwe": [
+              "CWE-78"
+            ]
+          },
+          "severity": "ERROR",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 16,
+          "col": 1,
+          "offset": 358
+        },
+        "end": {
+          "line": 26,
+          "col": 29,
+          "offset": 734
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 29,
+          "col": 1,
+          "offset": 737
+        },
+        "end": {
+          "line": 36,
+          "col": 21,
+          "offset": 981
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "security-audit-weak-hash",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 34,
+          "col": 17,
+          "offset": 913
+        },
+        "end": {
+          "line": 34,
+          "col": 47,
+          "offset": 943
+        },
+        "extra": {
+          "message": "MD5 is cryptographically broken and should not be used.",
+          "metadata": {
+            "category": "security",
+            "cwe": [
+              "CWE-327"
+            ]
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 39,
+          "col": 1,
+          "offset": 984
+        },
+        "end": {
+          "line": 44,
+          "col": 19,
+          "offset": 1162
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "secrets-api-key",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 42,
+          "col": 5,
+          "offset": 1107
+        },
+        "end": {
+          "line": 42,
+          "col": 36,
+          "offset": 1138
+        },
+        "extra": {
+          "message": "Hardcoded API key detected.",
+          "metadata": {
+            "category": "secrets"
+          },
+          "severity": "ERROR",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 47,
+          "col": 1,
+          "offset": 1165
+        },
+        "end": {
+          "line": 54,
+          "col": 18,
+          "offset": 1419
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "owasp-top10-injection",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 52,
+          "col": 5,
+          "offset": 1366
+        },
+        "end": {
+          "line": 52,
+          "col": 35,
+          "offset": 1396
+        },
+        "extra": {
+          "message": "[OWASP A1] Use of eval() can lead to code injection vulnerabilities.",
+          "metadata": {
+            "owasp": "A1: Injection",
+            "category": "security"
+          },
+          "severity": "ERROR",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "code-quality-long-function",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 57,
+          "col": 1,
+          "offset": 1422
+        },
+        "end": {
+          "line": 64,
+          "col": 38,
+          "offset": 1792
+        },
+        "extra": {
+          "message": "Function is too long. Consider splitting into smaller functions.",
+          "metadata": {
+            "category": "code-quality"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      },
+      {
+        "check_id": "dependency-unpinned-version",
+        "path": "src_test\\example_vulnerable_code.py",
+        "start": {
+          "line": 74,
+          "col": 4,
+          "offset": 2005
+        },
+        "end": {
+          "line": 74,
+          "col": 15,
+          "offset": 2016
+        },
+        "extra": {
+          "message": "Dependency version not pinned. Use exact version in requirements.txt.",
+          "metadata": {
+            "category": "dependency"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      }
+    ],
+    "errors": [],
+    "paths": {
+      "scanned": [
+        "src_test\\example.py",
+        "src_test\\example_vulnerable_code.py"
+      ]
+    },
+    "time": {
+      "rules": [],
+      "rules_parse_time": 0.06395816802978516,
+      "profiling_times": {
+        "config_time": 0.7834053039550781,
+        "core_time": 0.5530602931976318,
+        "ignores_time": 5.698204040527344e-05,
+        "total_time": 1.3368258476257324
+      },
+      "parsing_time": {
+        "total_time": 0.02811598777770996,
+        "per_file_time": {
+          "mean": 0.01405799388885498,
+          "std_dev": 0.00019762719217908398
+        },
+        "very_slow_stats": {
+          "time_ratio": 0.0,
+          "count_ratio": 0.0
+        },
+        "very_slow_files": []
+      },
+      "scanning_time": {
+        "total_time": 0.2234799861907959,
+        "per_file_time": {
+          "mean": 0.055869996547698975,
+          "std_dev": 0.00454460720818517
+        },
+        "very_slow_stats": {
+          "time_ratio": 0.0,
+          "count_ratio": 0.0
+        },
+        "very_slow_files": []
+      },
+      "matching_time": {
+        "total_time": 0.18783259391784668,
+        "per_file_and_rule_time": {
+          "mean": 0.005869768559932709,
+          "std_dev": 0.0005573665716904208
+        },
+        "very_slow_stats": {
+          "time_ratio": 0.6667199778631603,
+          "count_ratio": 0.03125
+        },
+        "very_slow_rules_on_files": [
+          {
+            "fpath": "src_test\\example_vulnerable_code.py",
+            "rule_id": "code-quality-long-function",
+            "time": 0.12523174285888672
+          }
+        ]
+      },
+      "tainting_time": {
+        "total_time": 0.0,
+        "per_def_and_rule_time": {
+          "mean": 0.0,
+          "std_dev": 0.0
+        },
+        "very_slow_stats": {
+          "time_ratio": 0.0,
+          "count_ratio": 0.0
+        },
+        "very_slow_rules_on_defs": []
+      },
+      "targets": [],
+      "total_bytes": 0,
+      "max_memory_bytes": 168518336
+    },
+    "engine_requested": "OSS",
+    "skipped_rules": []
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "examples": [
+    {
+      "description": "Ví dụ 1: Lưu autofix reasoning cho syntax error",
+      "api_endpoint": "POST /api/reasoning/add",
+      "request_body": {
+        "content": "=== AUTOFIX REASONING ===\n\n## AI Thinking Process:\nPhát hiện thiếu dấu đóng ngoặc trong function call. Cần thêm ')' để hoàn thành syntax. Đây là lỗi cú pháp đơn giản có thể sửa tự động.\n\n## Fix Steps:\n1. Phân tích syntax error tại line 45\n2. Xác định vị trí thiếu closing parenthesis\n3. Thêm ')' vào cuối expression\n4. Validate syntax sau khi fix\n\n## Token Usage:\n- Prompt tokens: 150\n- Completion tokens: 75\n- Total tokens: 225\n\n## Fix Location:\n- File: src/utils/validator.py\n- Line: 45\n- Column: 25\n\n## Code Changes:\n\n### Original Code:\n```\ndef validate_input(data:\n    return len(data > 0\n```\n\n### Fixed Code:\n```\ndef validate_input(data):\n    return len(data) > 0\n```\n\n## Confidence Score: 0.95\n\n## Fix Summary:\nSuccessfully applied autofix with 4 steps, using 225 tokens.\nConfidence level: 95.0%",
+        "metadata": {
+          "bug_id": "BUG-SYNTAX-001",
+          "test_name": "autofix",
+          "iteration": 1,
+          "category": "autofix",
+          "source": "ai_autofix",
+          "timestamp": "2025-01-15T10:30:00.000Z",
+          "tags": ["autofix", "syntax", "high", "ai_generated"],
+          "autofix_metadata": {
+            "source_file": "src/utils/validator.py",
+            "bug_type": "syntax",
+            "severity": "high",
+            "fix_iteration": 1,
+            "confidence": 0.95,
+            "token_usage": {
+              "prompt_tokens": 150,
+              "completion_tokens": 75,
+              "total_tokens": 225
+            },
+            "fix_location": {
+              "file": "src/utils/validator.py",
+              "line": 45,
+              "column": 25
+            },
+            "fix_timestamp": "2025-01-15T10:30:00.000Z"
+          }
+        }
+      }
+    },
+    {
+      "description": "Ví dụ 2: Lưu autofix reasoning cho type error",
+      "api_endpoint": "POST /api/reasoning/add",
+      "request_body": {
+        "content": "=== AUTOFIX REASONING ===\n\n## AI Thinking Process:\nFunction expect string parameter nhưng có thể nhận int. Cần thêm type conversion hoặc update type hint để handle cả hai loại. Chọn cách convert to string để đảm bảo compatibility.\n\n## Fix Steps:\n1. Phân tích type mismatch error\n2. Xác định expected type vs actual type\n3. Thêm str() conversion\n4. Update function để handle multiple types\n5. Test với cả string và int inputs\n\n## Token Usage:\n- Prompt tokens: 200\n- Completion tokens: 120\n- Total tokens: 320\n\n## Fix Location:\n- File: src/models/user.py\n- Line: 28\n- Column: 15\n\n## Code Changes:\n\n### Original Code:\n```\ndef format_user_id(user_id):\n    return user_id.upper()\n```\n\n### Fixed Code:\n```\ndef format_user_id(user_id):\n    return str(user_id).upper()\n```\n\n## Confidence Score: 0.88\n\n## Fix Summary:\nSuccessfully applied autofix with 5 steps, using 320 tokens.\nConfidence level: 88.0%",
+        "metadata": {
+          "bug_id": "BUG-TYPE-002",
+          "test_name": "autofix",
+          "iteration": 1,
+          "category": "autofix",
+          "source": "ai_autofix",
+          "timestamp": "2025-01-15T10:35:00.000Z",
+          "tags": ["autofix", "type", "medium", "ai_generated"],
+          "autofix_metadata": {
+            "source_file": "src/models/user.py",
+            "bug_type": "type",
+            "severity": "medium",
+            "fix_iteration": 1,
+            "confidence": 0.88,
+            "token_usage": {
+              "prompt_tokens": 200,
+              "completion_tokens": 120,
+              "total_tokens": 320
+            },
+            "fix_location": {
+              "file": "src/models/user.py",
+              "line": 28,
+              "column": 15
+            },
+            "fix_timestamp": "2025-01-15T10:35:00.000Z"
+          }
+        }
+      }
+    },
+    {
+      "description": "Ví dụ 3: Lưu autofix reasoning cho security issue",
+      "api_endpoint": "POST /api/reasoning/add",
+      "request_body": {
+        "content": "=== AUTOFIX REASONING ===\n\n## AI Thinking Process:\nPhát hiện SQL injection vulnerability do string concatenation. Cần thay thế bằng parameterized query để prevent injection attacks. Đây là security issue nghiêm trọng cần fix ngay lập tức.\n\n## Fix Steps:\n1. Phát hiện SQL injection vulnerability\n2. Phân tích cách user input được sử dụng\n3. Thay thế string concatenation bằng parameterized query\n4. Thêm input validation\n5. Test với malicious inputs để verify fix\n\n## Token Usage:\n- Prompt tokens: 300\n- Completion tokens: 180\n- Total tokens: 480\n\n## Fix Location:\n- File: src/database/queries.py\n- Line: 67\n- Column: 20\n\n## Code Changes:\n\n### Original Code:\n```\nquery = f\"SELECT * FROM users WHERE id = {user_id}\"\ncursor.execute(query)\n```\n\n### Fixed Code:\n```\nquery = \"SELECT * FROM users WHERE id = %s\"\ncursor.execute(query, (user_id,))\n```\n\n## Confidence Score: 0.92\n\n## Fix Summary:\nSuccessfully applied autofix with 5 steps, using 480 tokens.\nConfidence level: 92.0%",
+        "metadata": {
+          "bug_id": "BUG-SEC-003",
+          "test_name": "autofix",
+          "iteration": 2,
+          "category": "autofix",
+          "source": "ai_autofix",
+          "timestamp": "2025-01-15T10:40:00.000Z",
+          "tags": ["autofix", "security", "critical", "ai_generated", "sql_injection"],
+          "autofix_metadata": {
+            "source_file": "src/database/queries.py",
+            "bug_type": "security",
+            "severity": "critical",
+            "fix_iteration": 2,
+            "confidence": 0.92,
+            "token_usage": {
+              "prompt_tokens": 300,
+              "completion_tokens": 180,
+              "total_tokens": 480
+            },
+            "fix_location": {
+              "file": "src/database/queries.py",
+              "line": 67,
+              "column": 20
+            },
+            "fix_timestamp": "2025-01-15T10:40:00.000Z"
+          }
+        }
+      }
+    },
+    {
+      "description": "Ví dụ 4: Lưu autofix reasoning cho multiple bugs fix",
+      "api_endpoint": "POST /api/reasoning/add",
+      "request_body": {
+        "content": "=== AUTOFIX REASONING - MULTIPLE BUGS ===\n\n## AI Thinking Process:\nPhát hiện 3 bugs trong cùng một file: 1 syntax error, 1 unused import, và 1 type annotation missing. Có thể fix tất cả cùng lúc để tối ưu hiệu quả. Thứ tự fix: syntax -> imports -> type annotations.\n\n## Fix Steps:\n1. Scan toàn bộ file để identify all issues\n2. Fix syntax error tại line 15 (missing colon)\n3. Remove unused import 'os' tại line 3\n4. Add type annotation cho function parameter tại line 22\n5. Validate toàn bộ file sau khi fix\n6. Run tests để ensure no regression\n\n## Token Usage:\n- Prompt tokens: 450\n- Completion tokens: 280\n- Total tokens: 730\n\n## Multiple Fix Locations:\n- Fix 1: src/utils/helper.py:15 (syntax)\n- Fix 2: src/utils/helper.py:3 (unused import)\n- Fix 3: src/utils/helper.py:22 (type annotation)\n\n## Code Changes:\n\n### Original Code:\n```\nimport os\nimport json\nfrom typing import Dict\n\ndef process_data(data)\n    result = {}\n    for item in data:\n        result[item.id] = item.value\n    return result\n\ndef format_output(data):\n    return json.dumps(data, indent=2)\n```\n\n### Fixed Code:\n```\nimport json\nfrom typing import Dict, List, Any\n\ndef process_data(data: List[Any]) -> Dict[str, Any]:\n    result = {}\n    for item in data:\n        result[item.id] = item.value\n    return result\n\ndef format_output(data: Dict[str, Any]) -> str:\n    return json.dumps(data, indent=2)\n```\n\n## Confidence Score: 0.89\n\n## Fix Summary:\nSuccessfully applied autofix for 3 bugs with 6 steps, using 730 tokens.\nConfidence level: 89.0%\nFixed: syntax error, unused import, missing type annotations",
+        "metadata": {
+          "bug_id": "BUG-MULTI-004",
+          "test_name": "autofix",
+          "iteration": 1,
+          "category": "autofix",
+          "source": "ai_autofix",
+          "timestamp": "2025-01-15T10:45:00.000Z",
+          "tags": ["autofix", "multiple_bugs", "medium", "ai_generated", "batch_fix"],
+          "autofix_metadata": {
+            "source_file": "src/utils/helper.py",
+            "bug_type": "multiple",
+            "severity": "medium",
+            "fix_iteration": 1,
+            "confidence": 0.89,
+            "bugs_fixed_count": 3,
+            "token_usage": {
+              "prompt_tokens": 450,
+              "completion_tokens": 280,
+              "total_tokens": 730
+            },
+            "fix_locations": [
+              {
+                "file": "src/utils/helper.py",
+                "line": 15,
+                "column": 20,
+                "bug_type": "syntax"
+              },
+              {
+                "file": "src/utils/helper.py",
+                "line": 3,
+                "column": 1,
+                "bug_type": "unused_import"
+              },
+              {
+                "file": "src/utils/helper.py",
+                "line": 22,
+                "column": 15,
+                "bug_type": "type_annotation"
+              }
+            ],
+            "fix_timestamp": "2025-01-15T10:45:00.000Z"
+          }
+        }
+      }
+    }
+  ],
+  "curl_examples": [
+    {
+      "description": "Gửi autofix reasoning cho syntax error",
+      "command": "curl -X POST http://localhost:8000/api/reasoning/add \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"content\": \"=== AUTOFIX REASONING ===\\n\\n## AI Thinking Process:\\nPhát hiện thiếu dấu đóng ngoặc...\",\n    \"metadata\": {\n      \"bug_id\": \"BUG-SYNTAX-001\",\n      \"test_name\": \"autofix\",\n      \"iteration\": 1,\n      \"category\": \"autofix\",\n      \"source\": \"ai_autofix\",\n      \"tags\": [\"autofix\", \"syntax\", \"high\"]\n    }\n  }'"
+    },
+    {
+      "description": "Search autofix reasoning đã lưu",
+      "command": "curl -X POST http://localhost:8000/api/reasoning/search \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"query\": \"syntax error autofix\",\n    \"k\": 5,\n    \"filter_criteria\": {\n      \"tags\": {\"$in\": [\"autofix\", \"syntax\"]}\n    }\n  }'"
+    }
+  ],
+  "usage_notes": [
+    "API reasoning/add có thể lưu đầy đủ thông tin autofix response bao gồm thinking, steps, token usage, và code changes",
+    "Metadata autofix_metadata chứa thông tin chi tiết về fix process",
+    "Tags giúp filter và search autofix reasoning dễ dàng",
+    "Có thể lưu reasoning cho single bug hoặc multiple bugs fix",
+    "Token usage tracking giúp optimize cost và performance",
+    "Confidence score giúp đánh giá chất lượng autofix",
+    "Timestamp tracking cho audit trail và analytics"
+  ]
+}

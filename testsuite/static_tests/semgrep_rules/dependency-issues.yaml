@@ -1,0 +1,33 @@
+rules:
+  - id: dependency-insecure-package
+    patterns:
+      - pattern: import $PKG
+    message: "Check imported package for known vulnerabilities."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: dependency
+  - id: dependency-unpinned-version
+    patterns:
+      - pattern: $PKG==
+    message: "Dependency version not pinned. Use exact version in requirements.txt."
+    severity: WARNING
+    languages: [generic]
+    metadata:
+      category: dependency
+  - id: config-debug-true
+    patterns:
+      - pattern: DEBUG = True
+    message: "DEBUG mode enabled in production."
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: configuration
+  - id: config-allowed-hosts-all
+    patterns:
+      - pattern: ALLOWED_HOSTS = ["*"]
+    message: "ALLOWED_HOSTS set to wildcard. Restrict to specific domains."
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: configuration

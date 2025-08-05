@@ -1,0 +1,29 @@
+rules:
+  - id: cwe-top25-buffer-overflow
+    patterns:
+      - pattern: gets($BUF)
+    message: "[CWE-120] Use of gets() can cause buffer overflow. Use fgets() instead."
+    severity: ERROR
+    languages: [c]
+    metadata:
+      cwe: CWE-120
+      category: security
+  - id: cwe-top25-hardcoded-credentials
+    patterns:
+      - pattern: password = "*"
+    message: "[CWE-798] Hardcoded credentials detected."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      cwe: CWE-798
+      category: security
+  - id: cwe-top25-command-injection
+    patterns:
+      - pattern: os.system($CMD)
+      - pattern-inside: $CMD = input(...)
+    message: "[CWE-77] Possible command injection via os.system."
+    severity: ERROR
+    languages: [python]
+    metadata:
+      cwe: CWE-77
+      category: security

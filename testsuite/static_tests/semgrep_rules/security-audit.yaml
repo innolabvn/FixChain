@@ -1,0 +1,62 @@
+rules:
+  - id: security-audit-eval
+    pattern: eval(...)
+    message: "Use of eval() is dangerous and can lead to code execution vulnerabilities."
+    severity: ERROR
+    languages: [python, javascript]
+    metadata:
+      category: security
+      cwe: [CWE-95]
+      owasp: ["A3:2021"]
+
+  - id: security-audit-exec
+    pattern: exec($X)
+    message: "Use of exec() is dangerous and can lead to code execution vulnerabilities."
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: security
+      cwe: [CWE-78]
+      owasp: ["A3:2021"]
+  - id: security-audit-pickle-load
+    patterns:
+      - pattern: pickle.load($X)
+    message: "Use of pickle.load() is dangerous and can lead to code execution vulnerabilities."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+  - id: security-audit-insecure-http
+    patterns:
+      - pattern: requests.get($URL)
+      - pattern-inside: $URL = "http://*"
+    message: "Insecure HTTP request detected. Use HTTPS instead."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+  - id: security-audit-os-system
+    pattern: os.system(...)
+    message: "Use of os.system() is dangerous and can lead to command injection vulnerabilities."
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: security
+      cwe: [CWE-78]
+  - id: security-audit-sql-injection
+    patterns:
+      - pattern: $CURSOR.execute($QUERY + ...)
+    message: "Potential SQL injection via string concatenation."
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: security
+      cwe: [CWE-89]
+  - id: security-audit-weak-hash
+    pattern: hashlib.md5(...)
+    message: "MD5 is cryptographically broken and should not be used."
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: [CWE-327]
